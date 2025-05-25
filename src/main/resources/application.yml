@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: player-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/playerdb
+    username: postgres
+    password: 123
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  sql:
+    init:
+      mode: always
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+    org.springframework: INFO
+    org.hibernate.SQL: DEBUG           # SQL запросы
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE  # Параметры запросов (bind values)
+    org.hibernate.orm.jdbc.bind: TRACE  # Bind-значения для Hibernate 6+
