@@ -1,0 +1,38 @@
+Structure
+
+src/main/java/com/tournament
+│
+├── application
+│   ├── repository         <-- Порты (интерфейсы) для работы с хранилищем
+│   │   └── PlayerRepository
+│   └── usecase            <-- Порты для бизнес-логики
+│       ├── PlayerDeleteUseCase / PlayerDeleteUseCaseImpl
+│       ├── PlayerQueryUseCase / PlayerQueryUseCaseImpl
+│       └── RegisterPlayerUseCase / RegisterPlayerUseCaseImpl
+│
+├── config                 <-- Конфигурация приложения
+│   ├── BeanConfig
+│   └── SecurityConfig
+│
+├── domain
+│   └── model              <-- Основная бизнес-модель
+│       └── Player
+│
+├── infrastructure
+│   ├── crypto             <-- Шифрование данных
+│   │   ├── AesEncryptor
+│   │   └── Encryptor
+│   └── persistence        <-- Адаптеры доступа к БД
+│       ├── JpaPlayerRepositoryAdapter
+│       ├── PlayerEntity
+│       ├── PlayerPersistenceMapper
+│       └── SpringDataPlayerRepository
+│
+├── presentation
+│   ├── controller         <-- REST API (контроллеры)
+│   │   └── PlayerController
+│   ├── dto                <-- Объекты передачи данных
+│   ├── exception          <-- Глобальная обработка ошибок
+│   └── mapper             <-- Маппинг DTO <-> Domain
+│
+└── PlayerServiceApplication
