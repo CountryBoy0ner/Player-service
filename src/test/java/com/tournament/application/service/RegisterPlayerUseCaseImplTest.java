@@ -1,6 +1,7 @@
 package com.tournament.application.service;
 
-import com.tournament.application.port.out.PlayerRepository;
+import com.tournament.application.repository.PlayerRepository;
+import com.tournament.application.usecase.RegisterPlayerUseCaseImpl;
 import com.tournament.domain.model.Player;
 import com.tournament.presentation.exception.PlayerAlreadyExistsException;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,15 +11,15 @@ import org.mockito.Mockito;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class RegisterPlayerServiceTest {
+class RegisterPlayerUseCaseImplTest {
 
     private PlayerRepository playerRepository;
-    private RegisterPlayerService registerPlayerService;
+    private RegisterPlayerUseCaseImpl registerPlayerUseCaseImpl;
 
     @BeforeEach
     void setUp() {
         playerRepository = Mockito.mock(PlayerRepository.class);
-        registerPlayerService = new RegisterPlayerService(playerRepository);
+        registerPlayerUseCaseImpl = new RegisterPlayerUseCaseImpl(playerRepository);
     }
 
     @Test
@@ -30,7 +31,7 @@ class RegisterPlayerServiceTest {
         when(playerRepository.existsByUsername(username)).thenReturn(false);
 
         // when
-        Player player = registerPlayerService.register(username, email);
+        Player player = registerPlayerUseCaseImpl.register(username, email);
 
         // then
         assertEquals(username, player.getUsername());
@@ -50,7 +51,7 @@ class RegisterPlayerServiceTest {
 
         // then
         assertThrows(PlayerAlreadyExistsException.class, () -> {
-            registerPlayerService.register(username, email);
+            registerPlayerUseCaseImpl.register(username, email);
         });
 
         verify(playerRepository, never()).save(any(Player.class));

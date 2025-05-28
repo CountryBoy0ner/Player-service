@@ -1,13 +1,13 @@
 package com.tournament.presentation.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tournament.application.port.in.PlayerDeleteUseCase;
-import com.tournament.application.port.in.PlayerQueryUseCase;
-import com.tournament.application.port.in.RegisterPlayerUseCase;
+import com.tournament.application.usecase.PlayerDeleteUseCase;
+import com.tournament.application.usecase.PlayerQueryUseCase;
+import com.tournament.application.usecase.RegisterPlayerUseCase;
 import com.tournament.domain.model.Player;
 import com.tournament.presentation.dto.PlayerRequest;
 import com.tournament.presentation.dto.PlayerResponse;
-import com.tournament.presentation.mapper.PlayerMapper;
+import com.tournament.presentation.mapper.PlayerDtoMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,11 +47,11 @@ class PlayerControllerTest {
     private PlayerDeleteUseCase playerDeleteUseCase;
 
     @MockBean
-    private PlayerMapper playerMapper;
+    private PlayerDtoMapper playerDtoMapper;
 
     @BeforeEach
     void setUp() {
-        when(playerMapper.toResponse(any(Player.class))).thenAnswer(invocation -> {
+        when(playerDtoMapper.toResponse(any(Player.class))).thenAnswer(invocation -> {
             Player player = invocation.getArgument(0);
             PlayerResponse response = new PlayerResponse();
             response.setId(player.getId().toString());

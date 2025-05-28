@@ -1,6 +1,7 @@
 package com.tournament.application.service;
 
-import com.tournament.application.port.out.PlayerRepository;
+import com.tournament.application.repository.PlayerRepository;
+import com.tournament.application.usecase.PlayerQueryUseCaseImpl;
 import com.tournament.domain.model.Player;
 import com.tournament.presentation.exception.PlayerNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,15 +14,15 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class PlayerQueryServiceTest {
+class PlayerQueryUseCaseImplTest {
 
     private PlayerRepository playerRepository;
-    private PlayerQueryService playerQueryService;
+    private PlayerQueryUseCaseImpl playerQueryUseCaseImpl;
 
     @BeforeEach
     void setUp() {
         playerRepository = Mockito.mock(PlayerRepository.class);
-        playerQueryService = new PlayerQueryService(playerRepository);
+        playerQueryUseCaseImpl = new PlayerQueryUseCaseImpl(playerRepository);
     }
 
     @Test
@@ -39,7 +40,7 @@ class PlayerQueryServiceTest {
         when(playerRepository.findById(id)).thenReturn(Optional.of(player));
 
         // when
-        Player result = playerQueryService.getPlayerById(id);
+        Player result = playerQueryUseCaseImpl.getPlayerById(id);
 
         // then
         assertEquals(player, result);
@@ -54,7 +55,7 @@ class PlayerQueryServiceTest {
 
         // then
         assertThrows(PlayerNotFoundException.class, () -> {
-            playerQueryService.getPlayerById(id);
+            playerQueryUseCaseImpl.getPlayerById(id);
         });
 
         verify(playerRepository, times(1)).findById(id);

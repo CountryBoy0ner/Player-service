@@ -1,19 +1,16 @@
-package com.tournament.application.service;
+package com.tournament.application.usecase;
 
-import com.tournament.application.port.in.PlayerQueryUseCase;
-import com.tournament.application.port.out.PlayerRepository;
+import com.tournament.application.repository.PlayerRepository;
 import com.tournament.domain.model.Player;
 import com.tournament.presentation.exception.PlayerNotFoundException;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
-public class PlayerQueryService implements PlayerQueryUseCase {
+public class PlayerQueryUseCaseImpl implements PlayerQueryUseCase {
     private final PlayerRepository playerRepository;
 
-    public PlayerQueryService(PlayerRepository repository) {
+    public PlayerQueryUseCaseImpl(PlayerRepository repository) {
         this.playerRepository = repository;
     }
 

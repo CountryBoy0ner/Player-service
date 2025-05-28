@@ -28,6 +28,22 @@ logging:
   level:
     root: INFO
     org.springframework: INFO
-    org.hibernate.SQL: DEBUG           # SQL запросы
-    org.hibernate.type.descriptor.sql.BasicBinder: TRACE  # Параметры запросов (bind values)
-    org.hibernate.orm.jdbc.bind: TRACE  # Bind-значения для Hibernate 6+
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.orm.jdbc.bind: TRACE
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    prometheus:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
+encryption:
+  secret: 1234567890123456

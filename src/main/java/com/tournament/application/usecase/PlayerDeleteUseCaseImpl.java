@@ -1,18 +1,17 @@
-package com.tournament.application.service;
+package com.tournament.application.usecase;
 
-import com.tournament.application.port.in.PlayerDeleteUseCase;
-import com.tournament.application.port.out.PlayerRepository;
+import com.tournament.application.repository.PlayerRepository;
 import com.tournament.presentation.exception.PlayerNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
 @Service
-public class DeletePlayerService implements PlayerDeleteUseCase {
+public class PlayerDeleteUseCaseImpl implements PlayerDeleteUseCase {
 
     private final PlayerRepository playerRepository;
 
-    public DeletePlayerService(PlayerRepository playerRepository) {
+    public PlayerDeleteUseCaseImpl(PlayerRepository playerRepository) {
         this.playerRepository = playerRepository;
     }
 

@@ -1,9 +1,8 @@
-package com.tournament.application.port.in;
+package com.tournament.application.usecase;
 
 import com.tournament.domain.model.Player;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 public interface PlayerQueryUseCase {

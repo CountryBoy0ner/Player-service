@@ -5,7 +5,7 @@ import com.tournament.presentation.dto.PlayerResponse;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PlayerMapper {
+public class PlayerDtoMapper {
 
     public PlayerResponse toResponse(Player player) {
         PlayerResponse response = new PlayerResponse();

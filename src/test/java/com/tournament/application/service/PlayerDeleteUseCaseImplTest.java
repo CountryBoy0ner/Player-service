@@ -1,6 +1,7 @@
 package com.tournament.application.service;
 
-import com.tournament.application.port.out.PlayerRepository;
+import com.tournament.application.repository.PlayerRepository;
+import com.tournament.application.usecase.PlayerDeleteUseCaseImpl;
 import com.tournament.presentation.exception.PlayerNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,15 +12,15 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class DeletePlayerServiceTest {
+class PlayerDeleteUseCaseImplTest {
 
     private PlayerRepository playerRepository;
-    private DeletePlayerService deletePlayerService;
+    private PlayerDeleteUseCaseImpl playerDeleteUseCaseImpl;
 
     @BeforeEach
     void setUp() {
         playerRepository = Mockito.mock(PlayerRepository.class);
-        deletePlayerService = new DeletePlayerService(playerRepository);
+        playerDeleteUseCaseImpl = new PlayerDeleteUseCaseImpl(playerRepository);
     }
 
     @Test
@@ -27,7 +28,7 @@ class DeletePlayerServiceTest {
         UUID id = UUID.randomUUID();
         when(playerRepository.existsById(id)).thenReturn(true);
 
-        assertDoesNotThrow(() -> deletePlayerService.deletePlayer(id));
+        assertDoesNotThrow(() -> playerDeleteUseCaseImpl.deletePlayer(id));
         verify(playerRepository, times(1)).deleteById(id);
     }
 
@@ -36,7 +37,7 @@ class DeletePlayerServiceTest {
         UUID id = UUID.randomUUID();
         when(playerRepository.existsById(id)).thenReturn(false);
 
-        assertThrows(PlayerNotFoundException.class, () -> deletePlayerService.deletePlayer(id));
+        assertThrows(PlayerNotFoundException.class, () -> playerDeleteUseCaseImpl.deletePlayer(id));
         verify(playerRepository, never()).deleteById(id);
     }
 }

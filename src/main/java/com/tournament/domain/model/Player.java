@@ -1,16 +1,14 @@
 package com.tournament.domain.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Value;
 import lombok.Builder;
-import lombok.AccessLevel;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Value
 @Builder
-public class Player {  // Делаем класс public
+public class Player {
     UUID id;
     String username;
     String email;

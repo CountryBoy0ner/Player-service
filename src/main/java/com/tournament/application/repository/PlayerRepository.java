@@ -1,4 +1,4 @@
-package com.tournament.application.port.out;
+package com.tournament.application.repository;
 
 
 import com.tournament.domain.model.Player;
@@ -14,5 +14,4 @@ public interface PlayerRepository {
     List<Player> findAll();
     Optional<Player> findById(UUID id);
     void deleteById(UUID id);
-
 }

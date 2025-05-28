@@ -1,12 +1,12 @@
 package com.tournament.presentation.controller;
 
-import com.tournament.application.port.in.PlayerDeleteUseCase;
-import com.tournament.application.port.in.PlayerQueryUseCase;
-import com.tournament.application.port.in.RegisterPlayerUseCase;
+import com.tournament.application.usecase.PlayerDeleteUseCase;
+import com.tournament.application.usecase.PlayerQueryUseCase;
+import com.tournament.application.usecase.RegisterPlayerUseCase;
 import com.tournament.domain.model.Player;
 import com.tournament.presentation.dto.PlayerRequest;
 import com.tournament.presentation.dto.PlayerResponse;
-import com.tournament.presentation.mapper.PlayerMapper;
+import com.tournament.presentation.mapper.PlayerDtoMapper;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -22,13 +22,13 @@ import java.util.UUID;
 public class PlayerController {
 
     private final RegisterPlayerUseCase registerPlayerUseCase;
-    private final PlayerMapper playerMapper;
+    private final PlayerDtoMapper playerDtoMapper;
     private final PlayerQueryUseCase playerQueryUseCase;
     private final PlayerDeleteUseCase playerDeleteUseCase;
 
-    public PlayerController(RegisterPlayerUseCase useCase, PlayerMapper playerMapper, PlayerQueryUseCase playerQueryUseCase, PlayerDeleteUseCase playerDeleteUseCase) {
+    public PlayerController(RegisterPlayerUseCase useCase, PlayerDtoMapper playerDtoMapper, PlayerQueryUseCase playerQueryUseCase, PlayerDeleteUseCase playerDeleteUseCase) {
         this.registerPlayerUseCase = useCase;
-        this.playerMapper = playerMapper;
+        this.playerDtoMapper = playerDtoMapper;
         this.playerQueryUseCase = playerQueryUseCase;
         this.playerDeleteUseCase = playerDeleteUseCase;
     }
@@ -40,21 +40,21 @@ public class PlayerController {
         Player player = registerPlayerUseCase.register(request.getUsername(), request.getEmail());
         System.out.println(player.getUsername() + " " + player.getEmail() + " was caught in controller");
         // Преобразование через маппер
-        PlayerResponse response = playerMapper.toResponse(player);
+        PlayerResponse response = playerDtoMapper.toResponse(player);
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("all")//todo clean RESTful API
+    @GetMapping("/all")//todo clean RESTful API
     public ResponseEntity<List<PlayerResponse>> getAllPlayers() {
         List<Player> players = playerQueryUseCase.getAllPlayers();
-        List<PlayerResponse> responses = players.stream().map(playerMapper::toResponse).toList();
+        List<PlayerResponse> responses = players.stream().map(playerDtoMapper::toResponse).toList();
         return ResponseEntity.ok(responses);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<PlayerResponse> getPlayerById(@PathVariable UUID id) {
         Player player = playerQueryUseCase.getPlayerById(id);
-        return ResponseEntity.ok(playerMapper.toResponse(player));
+        return ResponseEntity.ok(playerDtoMapper.toResponse(player));
     }
 
     @DeleteMapping("/{id}")

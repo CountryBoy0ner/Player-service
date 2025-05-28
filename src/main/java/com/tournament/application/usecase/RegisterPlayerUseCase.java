@@ -1,4 +1,4 @@
-package com.tournament.application.port.in;
+package com.tournament.application.usecase;
 
 import com.tournament.domain.model.Player;
 

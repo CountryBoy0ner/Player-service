@@ -1,16 +1,14 @@
-package com.tournament.application.service;
+package com.tournament.application.usecase;
 
 
-import com.tournament.application.port.in.RegisterPlayerUseCase;
-import com.tournament.application.port.out.PlayerRepository;
+import com.tournament.application.repository.PlayerRepository;
 import com.tournament.domain.model.Player;
 import com.tournament.presentation.exception.PlayerAlreadyExistsException;
-import org.springframework.stereotype.Service;
 
-public class RegisterPlayerService implements RegisterPlayerUseCase {
+public class RegisterPlayerUseCaseImpl implements RegisterPlayerUseCase {
     private final PlayerRepository repository;
 
-    public RegisterPlayerService(PlayerRepository repository) {
+    public RegisterPlayerUseCaseImpl(PlayerRepository repository) {
         this.repository = repository;
     }
 
