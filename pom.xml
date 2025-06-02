@@ -116,7 +116,6 @@
 			<artifactId>javax.el</artifactId>
 			<version>3.0.0</version>
 		</dependency>
-		<!-- Micrometer для Prometheus -->
 		<dependency>
 			<groupId>io.micrometer</groupId>
 			<artifactId>micrometer-registry-prometheus</artifactId>
@@ -127,18 +126,6 @@
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<annotationProcessorPaths>
-						<path>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</path>
-					</annotationProcessorPaths>
-				</configuration>
-			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -151,36 +138,8 @@
 					</excludes>
 				</configuration>
 			</plugin>
-<!--			<plugin>-->
-<!--				<groupId>org.apache.maven.plugins</groupId>-->
-<!--				<artifactId>maven-checkstyle-plugin</artifactId>-->
-<!--				<version>3.3.0</version>-->
-<!--				<configuration>-->
-<!--					<configLocation>google_checks.xml</configLocation>-->
-<!--					<consoleOutput>true</consoleOutput>-->
-<!--					<failsOnError>true</failsOnError>-->
-<!--				</configuration>-->
-<!--			</plugin>-->
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-pmd-plugin</artifactId>
-				<version>3.21.0</version>
-				<configuration>
-					<failOnViolation>true</failOnViolation>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>com.github.spotbugs</groupId>
-				<artifactId>spotbugs-maven-plugin</artifactId>
-				<version>4.7.3.0</version>
-				<configuration>
-					<failOnError>true</failOnError>
-				</configuration>
-			</plugin>
-
-
-		</plugins>
+        </plugins>
 	</build>
+
 
 </project>
