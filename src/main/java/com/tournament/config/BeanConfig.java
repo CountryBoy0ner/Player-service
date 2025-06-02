@@ -17,10 +17,12 @@ public class BeanConfig {
     public RegisterPlayerUseCase registerPlayerUseCase(PlayerRepository repo) {
         return new RegisterPlayerUseCaseImpl(repo);
     }
+
     @Bean
     public PlayerQueryUseCase playerQueryUseCase(PlayerRepository repo) {
         return new PlayerQueryUseCaseImpl(repo);
     }
+
     @Bean
     public PlayerDeleteUseCase playerDeleteUseCase(PlayerRepository repo) {
         return new PlayerDeleteUseCaseImpl(repo);

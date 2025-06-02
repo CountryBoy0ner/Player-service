@@ -45,5 +45,8 @@ management:
       prometheus:
         enabled: true
 
+
+
+
 encryption:
   secret: 1234567890123456

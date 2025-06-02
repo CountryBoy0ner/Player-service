@@ -2,6 +2,7 @@ package com.tournament.domain.model;
 
 import lombok.Value;
 import lombok.Builder;
+import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

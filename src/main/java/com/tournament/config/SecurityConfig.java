@@ -11,12 +11,12 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()  // Отключаем CSRF (для REST API)
+                .csrf().disable()
                 .authorizeHttpRequests()
-                .anyRequest().permitAll()  // Разрешаем доступ ко всем маршрутам
+                .anyRequest().permitAll()
                 .and()
-                .httpBasic().disable()  // Отключаем базовую аутентификацию
-                .formLogin().disable(); // Отключаем форму логина
+                .httpBasic().disable()
+                .formLogin().disable();
         return http.build();
     }
 }
