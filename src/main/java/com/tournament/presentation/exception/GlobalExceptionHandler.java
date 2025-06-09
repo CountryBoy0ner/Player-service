@@ -33,7 +33,6 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGenericException(Exception ex, HttpServletRequest request) {
-        // Создаем список с одной общей ошибкой
         List<FieldValidationError> errors = List.of(new FieldValidationError("error", ex.getMessage()));
 
         ErrorResponse response = ErrorResponse.builder()

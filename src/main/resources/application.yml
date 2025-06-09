@@ -1,52 +1,56 @@
 spring:
-  application:
-    name: player-service
+    application:
+        name: player-service
 
-  datasource:
-    url: jdbc:postgresql://localhost:5432/playerdb
-    username: postgres
-    password: 123
-    driver-class-name: org.postgresql.Driver
+    datasource:
+        url: jdbc:postgresql://tournament-bd.postgres.database.azure.com:5432/playerdb?sslmode=require
+        username: Suzukie
+        password: 1340431NNNn
+        driver-class-name: org.postgresql.Driver
 
-  jpa:
-    hibernate:
-      ddl-auto: update
-      dialect: org.hibernate.dialect.PostgreSQLDialect
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
+    jpa:
+        hibernate:
+            ddl-auto: update
+            dialect: org.hibernate.dialect.PostgreSQLDialect
+        show-sql: true
+        properties:
+            hibernate:
+                format_sql: true
 
-  sql:
-    init:
-      mode: always
+    sql:
+        init:
+            mode: always
 
 server:
-  port: 8080
+    port: 8080
 
 logging:
-  level:
-    root: INFO
-    org.springframework: INFO
-    org.hibernate.SQL: DEBUG
-    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
-    org.hibernate.orm.jdbc.bind: TRACE
+    level:
+        root: INFO
+        org.springframework: INFO
+        org.hibernate.SQL: DEBUG
+        org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+        org.hibernate.orm.jdbc.bind: TRACE
 
 management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-  endpoint:
-    prometheus:
-      enabled: true
-  metrics:
-    export:
-      prometheus:
+    endpoints:
+        web:
+            exposure:
+                include: "*"
+    endpoint:
+        prometheus:
+            enabled: true
+    metrics:
+        export:
+            prometheus:
+                enabled: true
+
+graphql:
+    servlet:
+        mapping: /graphql
         enabled: true
-
-
-
+    tools:
+        schema-location-pattern: graphql/*.graphqls
 
 encryption:
-  secret: 1234567890123456
+    secret: 1234567890123456
