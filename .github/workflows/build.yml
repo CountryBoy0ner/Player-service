@@ -60,7 +60,7 @@ jobs:
                     name: player-service
 
             -   name: Rename downloaded JAR
-                run: mv target/*.jar app.jar
+                run: mv player-service/*.jar app.jar
 
             -   name: Set up Docker
                 uses: docker/setup-buildx-action@v3
@@ -70,4 +70,5 @@ jobs:
 
             -   name: Run Docker container (test deploy)
                 run: docker run -d -p 8080:8080 player-service
+
 
